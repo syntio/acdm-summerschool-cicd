@@ -11,7 +11,7 @@ func TestSum(t *testing.T) {
 	y := 2
 	c := Sum(x, y)
 
-	assert.Equal(t, 3, c)
+	assert.Equal(t, 4, c)
 }
 
 func TestSub(t *testing.T) {
