@@ -20,3 +20,10 @@ func TestSub(t *testing.T) {
 	c := Sub(x, y)
 	assert.Equal(t, 0, c)
 }
+
+func TestMul(t *testing.T) {
+	x := 2
+	y := 3
+	c := Mul(x, y)
+	assert.Equal(t, 6, c)
+}
