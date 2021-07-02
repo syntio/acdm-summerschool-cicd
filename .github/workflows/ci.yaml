@@ -1,0 +1,55 @@
+name: ci
+
+on:
+  pull_request:
+    branches:
+      - 'master'
+
+jobs:
+  unit_tests:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.16
+
+      - name: Mount repository
+        uses: actions/checkout@v2
+
+      - name: Tests
+        run: |
+          cd main/functions
+          go test -v
+      
+  linter:
+    name: Linter step
+    runs-on: ubuntu-latest
+    steps:  
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.16
+
+      - name: Mount repository
+        uses: actions/checkout@v2
+
+      - name: Go Lint
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.29
+          args: -v --skip-files .*_test.go
+          working-directory: ./main
+
+  editorconfig:
+    name: Editorconfig step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mount repository
+        uses: actions/checkout@v2
+
+      - name: Editor Config
+        run: |
+          npm install --save-dev editorconfig-checker
+          ./node_modules/.bin/editorconfig-checker
