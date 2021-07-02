@@ -20,7 +20,3 @@ func main() {
 
 	fmt.Print("Sum of ", x, " and ", y, " is: ", functions.Sum(x, y))
 }
-
-func Sub(a, b int) int {
-	return a - b
-}
